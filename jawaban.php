@@ -3,7 +3,6 @@ require_once "database.php";
 
 class jawaban extends database {
 
-    // Ambil semua jawaban berdasarkan idsoal
     function getByIdSoal($idsoal) {
         $stmt = $this->db->prepare("SELECT * FROM jawaban WHERE idsoal = ?");
         $stmt->bind_param("i", $idsoal);
@@ -18,7 +17,7 @@ class jawaban extends database {
     }
 
     function getCorrectAnswer($idsoal) {
-        $stmt = $this->db->prepare("SELECT * FROM jawaban WHERE idsoal = ? AND benarkah = 1");
+        $stmt = $this->db->prepare("SELECT * FROM jawaban WHERE idsoal = ? AND benar = 1");
         $stmt->bind_param("i", $idsoal);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -34,13 +33,13 @@ class jawaban extends database {
     }
 
     function isCorrect($idjawaban) {
-        $stmt = $this->db->prepare("SELECT benarkah FROM jawaban WHERE idjawaban = ?");
+        $stmt = $this->db->prepare("SELECT benar FROM jawaban WHERE idjawaban = ?");
         $stmt->bind_param("i", $idjawaban);
         $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
 
-        if ($row["benarkah"] == 1) {
+        if ($row["benar"] == 1) {
             return true;
         } else {
             return false;
