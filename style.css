@@ -24,3 +24,6 @@ h3 { font-size: 16px; }
     margin-right: 10px;
 }
 .pesan { color: red; }
+
+.jawaban-benar { color: green; }
+.jawaban-salah { color: red; }

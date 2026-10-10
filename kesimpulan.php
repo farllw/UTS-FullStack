@@ -37,7 +37,13 @@ if (isset($_POST['play_again'])) {
     ?>
     <div class="kartu">
         <h3><?php echo $s['nomor']; ?>. <?php echo htmlentities($s['pertanyaan']); ?></h3>
-        <p>Jawaban kamu:
+        <p class="<?php
+            if ($benar) {
+                echo 'jawaban-benar';
+            } else {
+                echo 'jawaban-salah';
+            }
+        ?>">Jawaban kamu:
             <?php
             if ($pilihan) {
                 echo htmlentities($pilihan['isi_jawaban']);
