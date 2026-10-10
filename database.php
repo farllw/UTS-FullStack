@@ -6,14 +6,14 @@ class database {
     private $db_name = "fullstack";
     protected $db;
 
-    function __construct() {
+    public function __construct() {
         $this->db = new mysqli($this->host, $this->user, $this->pass, $this->db_name);
-        if ($this->db->connect_error) {
+        if ($this->db->connect_errno) {
             die("Koneksi gagal: " . $this->db->connect_error);
         }
     }
 
-    function __destruct() {
+    public function __destruct() {
         $this->db->close();
     }
 }
